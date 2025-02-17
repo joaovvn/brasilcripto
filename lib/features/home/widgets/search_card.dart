@@ -60,11 +60,10 @@ class SearchCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                FittedBox(
-                  child: Text(
-                    crypto.name,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                  ),
+                Text(
+                  crypto.name,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  overflow: TextOverflow.ellipsis,
                 ),
                 Text(
                   crypto.symbol,

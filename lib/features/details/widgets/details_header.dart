@@ -27,7 +27,41 @@ class DetailsHeader extends SliverPersistentHeaderDelegate {
       child: Row(
         spacing: 10,
         children: [
-          Image.network(crypto.images.small),
+          SizedBox(
+              height: 50,
+              width: 50,
+              child: Image.network(
+                crypto.images.small,
+                loadingBuilder: (BuildContext context, Widget child,
+                    ImageChunkEvent? loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.secondary,
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                              loadingProgress.expectedTotalBytes!
+                          : null,
+                    ),
+                  );
+                },
+                errorBuilder: (context, exception, stackTrace) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.error,
+                        color: Colors.white,
+                        size: 25,
+                      ),
+                      Text(
+                        "Not found",
+                        style: TextStyle(fontSize: 8),
+                      )
+                    ],
+                  );
+                },
+              )),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,

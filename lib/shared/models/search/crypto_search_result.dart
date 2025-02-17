@@ -40,26 +40,23 @@ class CryptoSearchResult extends CryptoCoinBase {
       storage.write("favorites", favorites);
       return;
     }
-    final currentFavorites = storage.read<List>("favorites");
-    favorites = currentFavorites!
-        .map((coin) => CryptoSearchResult.fromJson(coin))
-        .toList();
+    final currentFavorites = storage.read("favorites");
+    favorites = List<CryptoSearchResult>.from(
+        currentFavorites.map((coin) => CryptoSearchResult.fromJson(coin)));
     favorites.add(this);
-    final newFavorites = favorites.map((coin) => coin.toJson()).toList();
-    storage.write("favorites", newFavorites);
+    storage.write(
+        "favorites", favorites.map((favorite) => favorite.toJson()).toList());
   }
 
   @override
   void removeFavorite() {
     final storage = GetStorage();
-    final currentFavorites = storage.read<List>("favorites");
-    List<CryptoSearchResult> favorites = currentFavorites!
-        .map((coin) =>
-            CryptoSearchResult.fromJson(Map<String, dynamic>.from(coin)))
-        .toList();
+    final currentFavorites = storage.read("favorites");
+    List<CryptoSearchResult> favorites = List<CryptoSearchResult>.from(
+        currentFavorites.map((coin) => CryptoSearchResult.fromJson(coin)));
     favorites.removeWhere((coin) => coin.id == id);
-    final newFavorites = favorites.map((coin) => coin.toJson()).toList();
-    storage.write("favorites", newFavorites);
+    storage.write(
+        "favorites", favorites.map((favorite) => favorite.toJson()).toList());
   }
 
   @override
@@ -69,10 +66,8 @@ class CryptoSearchResult extends CryptoCoinBase {
     if (currentFavorites == null) {
       return false;
     }
-    List<CryptoSearchResult> favorites = currentFavorites
-        .map((coin) =>
-            CryptoSearchResult.fromJson(Map<String, dynamic>.from(coin)))
-        .toList();
+    List<CryptoSearchResult> favorites = List<CryptoSearchResult>.from(
+        currentFavorites.map((coin) => CryptoSearchResult.fromJson(coin)));
 
     if (favorites.any((coin) => coin.id == id)) {
       return true;

@@ -13,12 +13,9 @@ class CustomDialog {
         buttonColor: AppColors.secondary,
         confirmTextColor: AppColors.primary,
         cancelTextColor: AppColors.secondary,
-        onCancel: () {
-          Get.back();
-        },
         onConfirm: () {
-          confirm();
           Get.back();
+          confirm();
         });
   }
 }
