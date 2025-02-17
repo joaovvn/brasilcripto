@@ -4,7 +4,7 @@ Flutter-based mobile application for searching and viewing details of cryptocurr
 
 ## Functionalities
 
-- ### Trendingp
+- ### Trending
 
   Follow the lastest trending cryptocurrencies.
 
@@ -13,7 +13,12 @@ Flutter-based mobile application for searching and viewing details of cryptocurr
   Search for cryptocurrencies.
 
 - ### Find details about each cryptocurrency
+
   You can see details about all the cryptocurrencies available on the CoinGecko API.
+
+- ### Favorites
+
+  Add currencies to your favorite list.
 
 ## Technologies
 
@@ -32,7 +37,7 @@ Flutter-based mobile application for searching and viewing details of cryptocurr
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/user/project.git
+   git clone https://github.com/joaovvn/brasilcripto.git
    ```
 
 2. Install dependencies:
@@ -43,7 +48,7 @@ Flutter-based mobile application for searching and viewing details of cryptocurr
 
 3. Choose your emulator
 
-   Your emulator **must** use Android API 23 or above, preferably above 31.
+   Your emulator **must** use Android API 21 or above, preferably above 35.
 
 4. Run
 
