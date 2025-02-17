@@ -37,7 +37,8 @@ class CryptoSearchResult extends CryptoCoinBase {
     List<CryptoSearchResult> favorites;
     if (storage.read("favorites") == null) {
       favorites = [this];
-      storage.write("favorites", favorites);
+      storage.write(
+          "favorites", favorites.map((favorite) => favorite.toJson()).toList());
       return;
     }
     final currentFavorites = storage.read("favorites");
@@ -62,12 +63,13 @@ class CryptoSearchResult extends CryptoCoinBase {
   @override
   bool verifyFavorite() {
     final storage = GetStorage();
-    final currentFavorites = storage.read<List>("favorites");
+    final currentFavorites = storage.read("favorites");
     if (currentFavorites == null) {
       return false;
     }
-    List<CryptoSearchResult> favorites = List<CryptoSearchResult>.from(
-        currentFavorites.map((coin) => CryptoSearchResult.fromJson(coin)));
+    List<CryptoSearchResult> favorites = (currentFavorites as List)
+        .map((coin) => CryptoSearchResult.fromJson(coin))
+        .toList();
 
     if (favorites.any((coin) => coin.id == id)) {
       return true;
