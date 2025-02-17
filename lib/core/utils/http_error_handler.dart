@@ -17,6 +17,8 @@ class HttpErrorHandler {
         return 'Forbidden: Access denied.';
       case 404:
         return 'Resource not found.';
+      case 429:
+        return 'Exceeded rate limit. Please try again later.';
       case 500:
         return 'Internal server error. Please try again later.';
       case 503:
@@ -28,15 +30,23 @@ class HttpErrorHandler {
 
   // Trata exceções comuns
   static String handleException(dynamic error) {
+    if (error.toString().isNotEmpty) {
+      return error.toString();
+    }
+
     if (error is SocketException) {
       return 'No internet connection.';
-    } else if (error is TimeoutException) {
-      return 'Connection timeout. Please try again.';
-    } else if (error is FormatException) {
-      return 'Error parsing the received data.';
-    } else {
-      return 'An unexpected error occurred.';
     }
+
+    if (error is TimeoutException) {
+      return 'Connection timeout. Please try again.';
+    }
+
+    if (error is FormatException) {
+      return 'Error parsing the received data.';
+    }
+
+    return 'An unexpected error occurred.';
   }
 
   // Tenta extrair uma mensagem de erro do corpo da resposta
