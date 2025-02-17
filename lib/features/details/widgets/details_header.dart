@@ -84,25 +84,27 @@ class DetailsHeader extends SliverPersistentHeaderDelegate {
             ),
           ),
           Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text("MARKET CAP",
-                    style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.secondary.withAlpha(150))),
-                Text(crypto.data.marketCap.formattedMarketCap(),
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.secondary.withAlpha(150))),
-                Text(
-                  crypto.data.formattedPrice(),
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                ),
-              ],
+            child: FittedBox(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text("MARKET CAP",
+                      style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.secondary.withAlpha(150))),
+                  Text(crypto.data.marketCap.formattedMarketCap(),
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.secondary.withAlpha(150))),
+                  Text(
+                    crypto.data.formattedPrice(),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  ),
+                ],
+              ),
             ),
           )
         ],
