@@ -30,6 +30,8 @@ Flutter-based mobile application for searching and viewing details of cryptocurr
 
 - **_State Management:_** [GetX](https://pub.dev/packages/get).
 
+- **_Navigation:_** [GetX](https://pub.dev/packages/get).
+
 - **_HTTP Networking:_** [HTTP](https://pub.dev/packages/http).
 
 ## Running
@@ -62,44 +64,44 @@ Flutter-based mobile application for searching and viewing details of cryptocurr
 
   Essencials for app funcionalities.
 
-  - ## lib/core/constants
+  - #### lib/core/constants
 
     App Constants.
 
-  - ## lib/core/services
+  - #### lib/core/services
 
     App Services such as API handling services.
 
-  - ## lib/core/utils
+  - #### lib/core/utils
     App Utils, which helps functions of the application.
 
 - ### lib/features
 
   Screens implementation.
 
-  - ## lib/features/####/view
+  - #### lib/features/####/view
 
     Contains the UI.
 
-  - ## lib/features/####/view_model
+  - #### lib/features/####/view_model
 
     Contains the ViewModel of the screen, which contains all the connection between the view and the model.
 
-  - ## lib/features/####/widgets
+  - #### lib/features/####/widgets
     Contains widgets specific to the screen.
 
 - ### lib/shared
 
   Shared content of the app
 
-  - ## lib/shared/models
+  - #### lib/shared/models
 
     App models.
 
-  - ## lib/shared/repositories
+  - #### lib/shared/repositories
 
     Connection between the API service and the viewmodels.
 
-  - ## lib/shared/widgets
+  - #### lib/shared/widgets
 
     Widgets shared between screens.

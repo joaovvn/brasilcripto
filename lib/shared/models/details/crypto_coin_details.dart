@@ -40,47 +40,43 @@ class CryptoCoinDetails extends CryptoCoinBase {
             thumb: images.thumb,
             large: images.large)
       ];
-      storage.write("favorites", favorites);
+      storage.write(
+          "favorites", favorites.map((favorite) => favorite.toJson()).toList());
       return;
     }
-    final currentFavorites = storage.read<List>("favorites");
-    favorites = currentFavorites!
-        .map((coin) => CryptoSearchResult.fromJson(coin))
-        .toList();
+    final currentFavorites = storage.read("favorites");
+    favorites = List<CryptoSearchResult>.from(
+        currentFavorites.map((coin) => CryptoSearchResult.fromJson(coin)));
     favorites.add(CryptoSearchResult(
         id: id,
         name: name,
         symbol: symbol,
         thumb: images.thumb,
         large: images.large));
-    final newFavorites = favorites.map((coin) => coin.toJson()).toList();
-    storage.write("favorites", newFavorites);
+    storage.write(
+        "favorites", favorites.map((favorite) => favorite.toJson()).toList());
   }
 
   @override
   void removeFavorite() {
     final storage = GetStorage();
-    final currentFavorites = storage.read<List>("favorites");
-    List<CryptoSearchResult> favorites = currentFavorites!
-        .map((coin) =>
-            CryptoSearchResult.fromJson(Map<String, dynamic>.from(coin)))
-        .toList();
+    final currentFavorites = storage.read("favorites");
+    List<CryptoSearchResult> favorites = List<CryptoSearchResult>.from(
+        currentFavorites.map((coin) => CryptoSearchResult.fromJson(coin)));
     favorites.removeWhere((coin) => coin.id == id);
-    final newFavorites = favorites.map((coin) => coin.toJson()).toList();
-    storage.write("favorites", newFavorites);
+    storage.write(
+        "favorites", favorites.map((favorite) => favorite.toJson()).toList());
   }
 
   @override
   bool verifyFavorite() {
     final storage = GetStorage();
-    final currentFavorites = storage.read<List>("favorites");
+    final currentFavorites = storage.read("favorites");
     if (currentFavorites == null) {
       return false;
     }
-    List<CryptoSearchResult> favorites = currentFavorites
-        .map((coin) =>
-            CryptoSearchResult.fromJson(Map<String, dynamic>.from(coin)))
-        .toList();
+    List<CryptoSearchResult> favorites = List<CryptoSearchResult>.from(
+        currentFavorites.map((coin) => CryptoSearchResult.fromJson(coin)));
 
     if (favorites.any((coin) => coin.id == id)) {
       return true;

@@ -61,7 +61,9 @@ class DetailsViewModel extends GetxController {
       Get.back();
       CustomSnackBar.throwErrorSnackBar(e.toString());
     } finally {
-      isLoading.value = false;
+      if (crypto.value != null) {
+        isLoading.value = false;
+      }
     }
   }
 
